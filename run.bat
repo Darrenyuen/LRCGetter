@@ -17,12 +17,12 @@ if errorlevel 1 (
 )
 
 ".venv\Scripts\python.exe" -m qrcd.cli
-set "QRCD_EXIT=%errorlevel%"
+set "LRCGETTER_EXIT=%errorlevel%"
 echo.
-if not "%QRCD_EXIT%"=="0" echo 程序退出，状态码：%QRCD_EXIT%
+if not "%LRCGETTER_EXIT%"=="0" echo 程序退出，状态码：%LRCGETTER_EXIT%
 echo 按任意键关闭窗口……
 pause >nul
-exit /b %QRCD_EXIT%
+exit /b %LRCGETTER_EXIT%
 
 :run_failed
 echo.

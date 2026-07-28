@@ -163,7 +163,7 @@ def main(argv: Iterable[str] | None = None) -> int:
             return 0 if download_one(
                 client, args.output, args.title, args.artist
             ) else 1
-        print("QRCD_M Windows / macOS 原生版（直接回车退出）")
+        print("LRCGetter Windows / macOS 原生版（直接回车退出）")
         while True:
             query = input("\n歌曲名或 QQ 音乐歌曲 ID：").strip()
             if not query:

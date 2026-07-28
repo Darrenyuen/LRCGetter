@@ -1,4 +1,4 @@
-# QRCD_M Windows / macOS 原生版
+# LRCGetter
 
 从 QQ 音乐搜索并下载 QRC 歌词，转换成通用 LRC。本项目不再调用原版的
 `lib_qrc_decoder.exe` 或 `QQMusicCommon.dll`，也不需要 Wine、虚拟机或
@@ -48,16 +48,16 @@ py -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -e .
 
 # 交互模式
-.\.venv\Scripts\python.exe -m qrcd.cli
+.\.venv\Scripts\lrcgetter.exe
 
 # 直接搜索
-.\.venv\Scripts\python.exe -m qrcd.cli "晴天" --artist "周杰伦"
+.\.venv\Scripts\lrcgetter.exe "晴天" --artist "周杰伦"
 
 # 按 QQ 音乐歌曲 ID 直接下载
-.\.venv\Scripts\python.exe -m qrcd.cli --song-id 323823965
+.\.venv\Scripts\lrcgetter.exe --song-id 323823965
 
 # 自定义输出目录
-.\.venv\Scripts\python.exe -m qrcd.cli "晴天" -a "周杰伦" -o "$HOME\Music\Lyrics"
+.\.venv\Scripts\lrcgetter.exe "晴天" -a "周杰伦" -o "$HOME\Music\Lyrics"
 ```
 
 ## macOS 使用
@@ -80,20 +80,19 @@ python3 -m venv .venv
 .venv/bin/python -m pip install -e .
 
 # 交互模式
-.venv/bin/python -m qrcd.cli
+.venv/bin/lrcgetter
 
 # 直接搜索
-.venv/bin/python -m qrcd.cli "晴天" --artist "周杰伦"
+.venv/bin/lrcgetter "晴天" --artist "周杰伦"
 
 # 按 QQ 音乐歌曲 ID 直接下载
-.venv/bin/python -m qrcd.cli --song-id 323823965
+.venv/bin/lrcgetter --song-id 323823965
 
 # 自定义输出目录
-.venv/bin/python -m qrcd.cli "晴天" -a "周杰伦" -o ~/Music/Lyrics
+.venv/bin/lrcgetter "晴天" -a "周杰伦" -o ~/Music/Lyrics
 ```
 
-安装后也会提供跨平台的 `qrcd` 命令。原有的 `qrcd-mac` 命令继续保留，
-以兼容旧的使用方式。
+安装后会提供跨平台的 `lrcgetter` 命令。
 
 ## 搜索结果与歌曲 ID
 
@@ -141,6 +140,8 @@ Windows: .\.venv\Scripts\python.exe -m pip
 
 项目使用 QQ 音乐 PC 客户端的非公开歌词接口。接口由第三方控制，未来可能
 发生变化。下载的歌词内容可能受版权保护，请仅在授权范围内个人使用。
+
+## 致谢与来源
 
 本项目的功能设计与歌词输出格式参考并移植自
 [MC-dusk/QRCD_M](https://github.com/MC-dusk/QRCD_M)，依据上游项目的

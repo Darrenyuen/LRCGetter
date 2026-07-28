@@ -1,4 +1,4 @@
-"""HTTP client for the QQ Music PC lyric endpoints used by QRCD_M."""
+"""HTTP client for the QQ Music PC lyric endpoints."""
 
 from __future__ import annotations
 

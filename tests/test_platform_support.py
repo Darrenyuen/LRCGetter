@@ -24,8 +24,8 @@ def test_windows_batch_goto_targets_exist():
         assert targets <= labels
 
 
-def test_cross_platform_command_keeps_the_macos_alias():
+def test_cross_platform_command_uses_lrcgetter_brand():
     pyproject = (ROOT / "pyproject.toml").read_text(encoding="utf-8")
 
-    assert 'qrcd = "qrcd.cli:main"' in pyproject
-    assert 'qrcd-mac = "qrcd.cli:main"' in pyproject
+    assert 'name = "lrcgetter"' in pyproject
+    assert 'lrcgetter = "qrcd.cli:main"' in pyproject
