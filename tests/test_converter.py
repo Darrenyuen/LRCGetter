@@ -1,6 +1,9 @@
+import io
+import sys
 from pathlib import Path
 
 import lrcgetter.cli
+import pytest
 from lrcgetter.converter import (
     bilingual_lrc,
     char_lrc,
@@ -125,3 +128,16 @@ def test_interactive_rejects_zero_song_id(monkeypatch, tmp_path: Path, capsys):
 
     assert lrcgetter.cli.main(["--output", str(tmp_path)]) == 0
     assert "歌曲 ID 必须是正整数" in capsys.readouterr().out
+
+
+def test_help_uses_utf8_on_a_legacy_windows_console(monkeypatch):
+    output = io.BytesIO()
+    console = io.TextIOWrapper(output, encoding="cp1252")
+    monkeypatch.setattr(sys, "stdout", console)
+
+    with pytest.raises(SystemExit) as exit_info:
+        lrcgetter.cli.main(["--help"])
+
+    console.flush()
+    assert exit_info.value.code == 0
+    assert "QQ 音乐" in output.getvalue().decode("utf-8")

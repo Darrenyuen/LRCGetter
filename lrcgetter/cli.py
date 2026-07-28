@@ -18,6 +18,18 @@ from .converter import (
 from .crypto import QRCDecodeError, decrypt_qrc
 
 
+def configure_console_encoding() -> None:
+    """Keep Chinese prompts usable on Windows and redirected terminals."""
+    for stream in (sys.stdout, sys.stderr):
+        reconfigure = getattr(stream, "reconfigure", None)
+        if reconfigure is None:
+            continue
+        try:
+            reconfigure(encoding="utf-8", errors="replace")
+        except (AttributeError, OSError, ValueError):
+            pass
+
+
 def choose_song(songs: Sequence[Song]) -> Song | None:
     print("搜索结果保持 QQ 音乐接口返回顺序，本工具不做本地排序。")
     print(
@@ -151,6 +163,7 @@ def build_parser() -> argparse.ArgumentParser:
 
 
 def main(argv: Iterable[str] | None = None) -> int:
+    configure_console_encoding()
     parser = build_parser()
     args = parser.parse_args(list(argv) if argv is not None else None)
     if args.song_id and args.title:
