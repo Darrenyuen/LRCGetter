@@ -1,4 +1,4 @@
-"""QRC parsing and conversion to line, word/character and bilingual LRC."""
+"""QRC parsing and LRC conversion for LRCGetter."""
 
 from __future__ import annotations
 

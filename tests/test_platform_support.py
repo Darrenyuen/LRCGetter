@@ -12,7 +12,7 @@ def test_windows_launchers_use_the_windows_virtual_environment():
     assert r".venv\Scripts\python.exe" in install
     assert r".venv\Scripts\python.exe" in run
     assert 'call "%~dp0install.bat"' in run
-    assert "-m qrcd.cli" in run
+    assert "-m lrcgetter.cli" in run
 
 
 def test_windows_batch_goto_targets_exist():
@@ -28,4 +28,4 @@ def test_cross_platform_command_uses_lrcgetter_brand():
     pyproject = (ROOT / "pyproject.toml").read_text(encoding="utf-8")
 
     assert 'name = "lrcgetter"' in pyproject
-    assert 'lrcgetter = "qrcd.cli:main"' in pyproject
+    assert 'lrcgetter = "lrcgetter.cli:main"' in pyproject

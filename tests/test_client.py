@@ -1,4 +1,4 @@
-from qrcd.client import DOWNLOAD_URL, SEARCH_URL, QQMusicClient, QQMusicError
+from lrcgetter.client import DOWNLOAD_URL, SEARCH_URL, QQMusicClient, QQMusicError
 
 
 class FakeResponse:

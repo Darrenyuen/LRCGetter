@@ -1,4 +1,4 @@
-from qrcd.crypto import decrypt_blocks
+from lrcgetter.crypto import decrypt_blocks
 
 
 def test_decrypt_block_matches_qqmusic_vector():

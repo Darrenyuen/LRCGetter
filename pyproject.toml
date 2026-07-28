@@ -16,13 +16,13 @@ dependencies = [
 ]
 
 [project.scripts]
-lrcgetter = "qrcd.cli:main"
+lrcgetter = "lrcgetter.cli:main"
 
 [project.optional-dependencies]
 test = ["pytest>=8,<10"]
 
 [tool.setuptools.packages.find]
-include = ["qrcd*"]
+include = ["lrcgetter*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

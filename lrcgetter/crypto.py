@@ -1,4 +1,4 @@
-"""QQ Music QRC decryption without Windows DLLs."""
+"""QQ Music QRC decryption for LRCGetter."""
 
 from __future__ import annotations
 

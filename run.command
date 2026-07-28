@@ -10,6 +10,6 @@ if [ ! -x ".venv/bin/python" ]; then
   .venv/bin/python -m pip install -e .
 fi
 
-.venv/bin/python -m qrcd.cli
+.venv/bin/python -m lrcgetter.cli
 echo
 read -r -p "按回车键关闭窗口……"

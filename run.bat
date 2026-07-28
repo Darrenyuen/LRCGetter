@@ -16,7 +16,7 @@ if errorlevel 1 (
     if errorlevel 1 goto run_failed
 )
 
-".venv\Scripts\python.exe" -m qrcd.cli
+".venv\Scripts\python.exe" -m lrcgetter.cli
 set "LRCGETTER_EXIT=%errorlevel%"
 echo.
 if not "%LRCGETTER_EXIT%"=="0" echo 程序退出，状态码：%LRCGETTER_EXIT%

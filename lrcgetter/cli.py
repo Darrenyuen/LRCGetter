@@ -1,4 +1,4 @@
-"""Interactive command-line interface."""
+"""Interactive command-line interface for LRCGetter."""
 
 from __future__ import annotations
 

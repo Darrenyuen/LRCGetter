@@ -1,7 +1,7 @@
 from pathlib import Path
 
-import qrcd.cli
-from qrcd.converter import (
+import lrcgetter.cli
+from lrcgetter.converter import (
     bilingual_lrc,
     char_lrc,
     extract_metadata,
@@ -69,10 +69,10 @@ def test_all_output_types(tmp_path: Path):
 
 
 def test_direct_mode_reports_no_result_as_failure(monkeypatch, tmp_path: Path):
-    monkeypatch.setattr(qrcd.cli, "QQMusicClient", lambda timeout: object())
-    monkeypatch.setattr(qrcd.cli, "download_one", lambda *args: False)
+    monkeypatch.setattr(lrcgetter.cli, "QQMusicClient", lambda timeout: object())
+    monkeypatch.setattr(lrcgetter.cli, "download_one", lambda *args: False)
 
-    assert qrcd.cli.main(["missing", "--output", str(tmp_path)]) == 1
+    assert lrcgetter.cli.main(["missing", "--output", str(tmp_path)]) == 1
 
 
 def test_song_id_download_uses_embedded_metadata(tmp_path: Path):
@@ -88,7 +88,7 @@ def test_song_id_download_uses_embedded_metadata(tmp_path: Path):
                 "roma": b"",
             }
 
-    assert qrcd.cli.download_by_id(Client(), tmp_path, "42")
+    assert lrcgetter.cli.download_by_id(Client(), tmp_path, "42")
     output_root = tmp_path / "Song-Artist"
     generated = list(output_root.rglob("Song-og-line.lrc"))
     assert len(generated) == 1
@@ -99,12 +99,12 @@ def test_interactive_numeric_query_can_download_by_id(monkeypatch, tmp_path: Pat
     inputs = iter(["42", "", ""])
     downloaded: list[str] = []
     monkeypatch.setattr("builtins.input", lambda prompt: next(inputs))
-    monkeypatch.setattr(qrcd.cli, "QQMusicClient", lambda timeout: object())
+    monkeypatch.setattr(lrcgetter.cli, "QQMusicClient", lambda timeout: object())
     monkeypatch.setattr(
-        qrcd.cli,
+        lrcgetter.cli,
         "download_by_id",
         lambda client, output, song_id: downloaded.append(song_id) or True,
     )
 
-    assert qrcd.cli.main(["--output", str(tmp_path)]) == 0
+    assert lrcgetter.cli.main(["--output", str(tmp_path)]) == 0
     assert downloaded == ["42"]
