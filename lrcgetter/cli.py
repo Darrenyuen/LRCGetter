@@ -143,7 +143,7 @@ def build_parser() -> argparse.ArgumentParser:
         "-o",
         "--output",
         type=Path,
-        default=Path(__file__).resolve().parents[1] / "lyric",
+        default=Path.cwd() / "lyric",
         help="歌词输出目录",
     )
     parser.add_argument("--timeout", type=float, default=20.0, help="网络超时秒数")
@@ -181,7 +181,11 @@ def main(argv: Iterable[str] | None = None) -> int:
                     "（直接回车确认，输入 n 按歌名搜索）："
                 ).strip().lower()
                 if confirmation not in {"n", "no"}:
-                    song_id = song_id_argument(query)
+                    try:
+                        song_id = song_id_argument(query)
+                    except argparse.ArgumentTypeError as exc:
+                        print(f"输入无效：{exc}")
+                        continue
             if song_id:
                 try:
                     download_by_id(client, args.output, song_id)

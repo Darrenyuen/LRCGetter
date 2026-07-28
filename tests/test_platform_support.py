@@ -29,3 +29,12 @@ def test_cross_platform_command_uses_lrcgetter_brand():
 
     assert 'name = "lrcgetter"' in pyproject
     assert 'lrcgetter = "lrcgetter.cli:main"' in pyproject
+
+
+def test_ci_covers_supported_desktop_platforms():
+    workflow = (ROOT / ".github/workflows/tests.yml").read_text(encoding="utf-8")
+
+    assert "macos-latest" in workflow
+    assert "windows-latest" in workflow
+    assert '"3.10"' in workflow
+    assert '"3.13"' in workflow

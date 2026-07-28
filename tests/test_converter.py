@@ -75,6 +75,14 @@ def test_direct_mode_reports_no_result_as_failure(monkeypatch, tmp_path: Path):
     assert lrcgetter.cli.main(["missing", "--output", str(tmp_path)]) == 1
 
 
+def test_default_output_uses_the_current_working_directory(
+    monkeypatch, tmp_path: Path
+):
+    monkeypatch.chdir(tmp_path)
+
+    assert lrcgetter.cli.build_parser().parse_args([]).output == tmp_path / "lyric"
+
+
 def test_song_id_download_uses_embedded_metadata(tmp_path: Path):
     class Client:
         def download(self, song_id: str):
@@ -108,3 +116,12 @@ def test_interactive_numeric_query_can_download_by_id(monkeypatch, tmp_path: Pat
 
     assert lrcgetter.cli.main(["--output", str(tmp_path)]) == 0
     assert downloaded == ["42"]
+
+
+def test_interactive_rejects_zero_song_id(monkeypatch, tmp_path: Path, capsys):
+    inputs = iter(["0", "", ""])
+    monkeypatch.setattr("builtins.input", lambda prompt: next(inputs))
+    monkeypatch.setattr(lrcgetter.cli, "QQMusicClient", lambda timeout: object())
+
+    assert lrcgetter.cli.main(["--output", str(tmp_path)]) == 0
+    assert "歌曲 ID 必须是正整数" in capsys.readouterr().out

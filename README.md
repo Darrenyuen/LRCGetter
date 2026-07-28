@@ -1,5 +1,7 @@
 # LRCGetter
 
+[![Tests](https://github.com/Darrenyuen/LRCGetter/actions/workflows/tests.yml/badge.svg)](https://github.com/Darrenyuen/LRCGetter/actions/workflows/tests.yml)
+
 从 QQ 音乐搜索并下载 QRC 歌词，转换成通用 LRC。本项目不再调用原版的
 `lib_qrc_decoder.exe` 或 `QQMusicCommon.dll`，也不需要 Wine、虚拟机或
 QQ 音乐客户端，可在 Windows 和 macOS 上原生运行。
