@@ -142,4 +142,6 @@ Windows: .\.venv\Scripts\python.exe -m pip
 项目使用 QQ 音乐 PC 客户端的非公开歌词接口。接口由第三方控制，未来可能
 发生变化。下载的歌词内容可能受版权保护，请仅在授权范围内个人使用。
 
-本项目依据原 QRCD_M 的 MIT License 进行移植，版权声明见 `LICENSE`。
+本项目的功能设计与歌词输出格式参考并移植自
+[MC-dusk/QRCD_M](https://github.com/MC-dusk/QRCD_M)，依据上游项目的
+MIT License 发布，版权声明见 `LICENSE`。
