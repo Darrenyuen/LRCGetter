@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "qrcd-mac"
+version = "1.0.0"
+description = "Native Windows and macOS QQ Music QRC lyric downloader and LRC converter"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+dependencies = [
+  "beautifulsoup4>=4.12,<5",
+  "lxml>=5.2,<7",
+  "pyqqmusicdes==0.1.1",
+  "requests>=2.31,<3",
+]
+
+[project.scripts]
+qrcd = "qrcd.cli:main"
+qrcd-mac = "qrcd.cli:main"
+
+[project.optional-dependencies]
+test = ["pytest>=8,<10"]
+
+[tool.setuptools.packages.find]
+include = ["qrcd*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
